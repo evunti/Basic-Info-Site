@@ -6,7 +6,20 @@ const server = http.createServer((req, res) => {
 
   res.setHeader("Content-Type", "text/html");
 
-  fs.readFile("./index.html", (err, data) => {
+  let path = "./html/";
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      break;
+    case "/about":
+      path += "about.html";
+      break;
+    default:
+      path += "404.html";
+      break;
+  }
+
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end();
@@ -20,12 +33,3 @@ const server = http.createServer((req, res) => {
 server.listen(8080, "localhost", () => {
   console.log("listening for requests on port 3000");
 });
-
-// const fs = require("fs");
-
-// fs.readFile("./docs/blog1.txt", (err, data) => {
-//   if (err) {
-//     console.log(err);
-//   }
-//   console.log(data.toString());
-// });
