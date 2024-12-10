@@ -15,8 +15,6 @@ app.get("/", (req, res) => {
 
 app.get("/about", (req, res) => {
   res.sendFile("./resources/about.html", { root: __dirname });
-
-  res.render("email");
 });
 
 app.get("/contact", (req, res) => {
